@@ -34,7 +34,7 @@ pipeline {
             stage('Validate and Add Green for testing') {
               steps {
                 sh """
-                if [ "\$(curl -o /dev/null --silent --head --write-out '%{http_code}' http://3.6.126.50/)" -eq 200 ]
+                if [ "\$(curl -o /dev/null --silent --head --write-out '%{http_code}' http://52.91.234.196/)" -eq 200 ]
                 then
                     echo "** BUILD IS SUCCESSFUL **"
                     curl -I http://52.91.234.196/
@@ -72,7 +72,7 @@ pipeline {
             stage('Validate Blue and added to TG') {
               steps {
                 sh """
-                if [ "\$(curl -o /dev/null --silent --head --write-out '%{http_code}' http://3.110.209.118/)" -eq 200 ]
+                if [ "\$(curl -o /dev/null --silent --head --write-out '%{http_code}' http://44.197.174.101/)" -eq 200 ]
                 then
                     echo "** BUILD IS SUCCESSFUL **"
                     curl -I http://44.197.174.101/
