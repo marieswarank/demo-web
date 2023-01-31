@@ -25,7 +25,7 @@ pipeline {
             }
             stage('Deploying to Green') {
               steps {
-                sh '''scp -r index.html root@52.91.234.196:/var/www/html/
+                sh '''scp -r index.nginx-debian.html root@52.91.234.196:/var/www/html/
                 ssh -t root@52.91.234.196 -p 22 << EOF 
                 sudo service nginx restart
                 '''
@@ -63,7 +63,7 @@ pipeline {
             }
             stage('Deploying to Blue') {
               steps {
-                sh '''scp -r index.html root@44.197.174.101:/var/www/html/
+                sh '''scp -r index.nginx-debian.html root@44.197.174.101:/var/www/html/
                 ssh -t root@44.197.174.101 -p 22 << EOF 
                 sudo service nginx restart
                 '''
