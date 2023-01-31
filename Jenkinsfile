@@ -25,8 +25,8 @@ pipeline {
             }
             stage('Deploying to Green') {
               steps {
-                sh '''scp -r index.html ubuntu@52.91.234.196:/usr/share/nginx/html/
-                ssh -t ubuntu@52.91.234.196 -p 22 << EOF 
+                sh '''scp -r index.html root@52.91.234.196:/usr/share/nginx/html/
+                ssh -t root@52.91.234.196 -p 22 << EOF 
                 sudo service nginx restart
                 '''
               }
@@ -63,8 +63,8 @@ pipeline {
             }
             stage('Deploying to Blue') {
               steps {
-                sh '''scp -r index.html ubuntu@44.197.174.101:/usr/share/nginx/html/
-                ssh -t ubuntu@44.197.174.101 -p 22 << EOF 
+                sh '''scp -r index.html root@44.197.174.101:/usr/share/nginx/html/
+                ssh -t root@44.197.174.101 -p 22 << EOF 
                 sudo service nginx restart
                 '''
               }
