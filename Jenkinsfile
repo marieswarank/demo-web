@@ -1,12 +1,12 @@
 pipeline {
   agent any
   parameters {
-    choice (name: 'chooseNode', choices: ['Green', 'Blue'], description: 'Choose which Environment to Deploy: ')
+    choice (name: 'chooseNode', choices: ['Green as web2', 'Blue as web1'], description: 'Choose which Environment to Deploy: ')
   }
   environment {
-    listenerARN = 'arn:aws:elasticloadbalancing:ap-south-1:745825563476:listener/app/blue-green/a201cfaa8896efbc/42dd93cfc6ceb733'
-    blueARN = 'arn:aws:elasticloadbalancing:ap-south-1:745825563476:targetgroup/blue/2e98c824a11a99c8'
-    greenARN = 'arn:aws:elasticloadbalancing:ap-south-1:745825563476:targetgroup/Green/1aa96e9ddb6bd5c5'
+    listenerARN = 'arn:aws:elasticloadbalancing:us-east-1:959221698010:listener/app/demo-web-lb/0943f762d839c91d/85a038ff87f17eb0'
+    blueARN = 'arn:aws:elasticloadbalancing:us-east-1:959221698010:targetgroup/web-1/2329de46748a4102'
+    greenARN = 'arn:aws:elasticloadbalancing:us-east-1:959221698010:targetgroup/web-2/6607bbc0a02a5920'
   }
   stages {
     stage('Deployment Started') {
@@ -14,7 +14,7 @@ pipeline {
         stage('Green') {
           when {
             expression {
-              params.chooseNode == 'Green'
+              params.chooseNode == 'Green as web2'
             }
           }
           stages {
@@ -52,7 +52,7 @@ pipeline {
         stage('Blue') {
           when {
             expression {
-              params.chooseNode == 'Blue'
+              params.chooseNode == 'Blue as web1'
             }
           }
           stages {
